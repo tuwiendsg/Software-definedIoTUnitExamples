@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	  xmlns:icecore="http://www.icefaces.org/icefaces/core"
+  xmlns:ice="http://www.icesoft.com/icefaces/component"	
+	xmlns:p="http://primefaces.org/ui">
+ 
+	<h:head>
+	
+	</h:head>
+	<h:body style="background-image: url(images.jpg); background-size: 100%;">
+		<script src="http://maps.google.com/maps/api/js?sensor=false" type="text/javascript" ></script>
+		<h1 style="margin-top:50px; text-align:center; font-family:Georgia, serif; color:white; font-size:40px;">DSG Vehicle tracking application</h1>
+	 	<div style="width:600px; position: absolute; margin-left: auto; margin-right: auto; left: 0; right: 0;margin-top:50px;">
+			<h:form id="form" submitOnClick="true">
+				<h:outputText id="label1" value="#{mapBean.label}" style="font-family:Georgia, serif; color:white; font-size: 15px;margin-top:1cm;"/>
+				<br/><br/>
+				<p:gmap id="map" center="#{mapBean.lat},#{mapBean.lon}" zoom="14" type="ROADMAP" model="#{mapBean.draggableModel}" 
+				 		disableDefaultUI="true" style="width:600px;height:400px">
+					<p:ajax event="markerDrag" listener="#{mapBean.onMarkerDrag}"/> 
+				</p:gmap>      
+				<br/>
+					<p:commandButton value="Start tracking" action="#{mqBean.startPush}" 
+				 		onsuccess="handleLoginRequest" style="color: white; background-color:#000099;"/>
+				  	<p:socket channel="/location" transport="websocket">
+		            	<p:ajax event="message" update="label1 form:map"/>
+		          	</p:socket>
+		    </h:form> 
+		</div>
+	</h:body>
+</html>
