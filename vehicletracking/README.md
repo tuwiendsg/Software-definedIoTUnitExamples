@@ -1,4 +1,4 @@
-Vehicle tracking Web application.
+Vehicle tracking Web application
 ===
 
 
