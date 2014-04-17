@@ -10,10 +10,11 @@
            http://www.springframework.org/schema/context
            http://www.springframework.org/schema/context/spring-context-2.5.xsd">
 
-<bean id="producer" class="activeMQclient.MQProducer" />
+	<bean id="producer" class="activeMQclient.MQProducer" />
+	<!--<bean id="producer" class="coap.CoapMock" />-->
 
-<bean id="TemperatureSensor" class="sensor.TemperatureSensor">
-<property name="producer" ref="producer" />
-</bean>
+	<bean id="LocationSensor" class="sensor.LocationSensor">
+		<property name="producer" ref="producer" />
+	</bean>
 
 </beans> 
