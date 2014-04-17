@@ -8,6 +8,8 @@ import org.springframework.beans.factory.BeanFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import sdapi.Bootstrapable;
+
 import activeMQclient.sdcomapi.Event;
 import activeMQclient.sdcomapi.Producer;
 
@@ -15,23 +17,24 @@ import activeMQclient.sdcomapi.Producer;
  * Software-defined temperature sensor
  * */
 
-public class TemperatureSensor implements Runnable {
+public class LocationSensor implements Runnable, Bootstrapable {
 
 	private Producer producer;
+	private LocationSensor sens;
+	
+	public LocationSensor() {}
 
-	public TemperatureSensor() {}
+	public void setRootDependency(Object o) {
+		sens = (LocationSensor)o;
+	}
 
-	public static void main(String[] args) {
-
-		final ApplicationContext context = new ClassPathXmlApplicationContext("META-INF/wire.xml");
-		BeanFactory factory = context;
-		TemperatureSensor sens = (TemperatureSensor) factory.getBean("TemperatureSensor");
+	public void start(){
 		sens.producer.setUp();
 
 		ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
 		scheduler.scheduleAtFixedRate(sens, 0, 1, TimeUnit.SECONDS);
 	}
-
+	
 	public void run() {
 		DataInstance temp = DataProvider.getProvider().getNextInstance();
 		System.out.println("Sensor reading update: " + temp.getJSON());
@@ -41,5 +44,10 @@ public class TemperatureSensor implements Runnable {
 
 	public void setProducer(Producer producer) {
 		this.producer = producer;
+	}
+
+		
+	public static void main(String[] args) {
+
 	}
 }

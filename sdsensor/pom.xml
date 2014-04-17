@@ -40,7 +40,7 @@
 					<archive>
 						<manifest>
 							<addClasspath>true</addClasspath>
-							<mainClass>sensor.TemperatureSensor</mainClass>
+							<mainClass>sensor.LocationSensor</mainClass>
 
 						</manifest>
 						<manifestEntries>
