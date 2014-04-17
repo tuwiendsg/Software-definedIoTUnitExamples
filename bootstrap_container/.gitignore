@@ -1,0 +1,5 @@
+/chef_jars/*
+/target/*
+*.classpath
+*.project
+.settings/*
