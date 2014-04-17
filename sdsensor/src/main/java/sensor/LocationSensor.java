@@ -4,12 +4,7 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
-import org.springframework.beans.factory.BeanFactory;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
-
 import sdapi.Bootstrapable;
-
 import activeMQclient.sdcomapi.Event;
 import activeMQclient.sdcomapi.Producer;
 
