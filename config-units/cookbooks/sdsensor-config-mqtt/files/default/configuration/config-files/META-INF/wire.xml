@@ -10,11 +10,15 @@
            http://www.springframework.org/schema/context
            http://www.springframework.org/schema/context/spring-context-2.5.xsd">
 
-	<bean id="producer" class="activeMQclient.MQProducer" />
-	<!--<bean id="producer" class="coap.CoapMock" />-->
+<!--<bean id="producer" class="mqttClient.MQProducer" />-->
+<!--<bean id="producer" class="coapClient.CoapMock" />-->
+<bean id="producer" class="smapClient.SmapMock" />
 
-	<bean id="LocationSensor" class="sensor.LocationSensor">
-		<property name="producer" ref="producer" />
-	</bean>
+<bean id="producerDelegate" class="sdapi.com.RefreshableProducerDelegate" scope="singleton">
+	<property name="protocol" ref="producer" />
+</bean>
+<bean id="LocationSensor" class="sensor.LocationSensor">
+	<property name="producerDelegate" ref="producerDelegate" />
+</bean>
 
 </beans> 
