@@ -1,4 +1,4 @@
-package activeMQclient.sdcomapi;
+package sdapi.com;
 
 public class Event {
 
