@@ -1,8 +1,7 @@
-package activeMQclient;
+package mqttClient;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
-import java.io.IOException;
 
 import javax.jms.Connection;
 import javax.jms.DeliveryMode;
@@ -14,12 +13,15 @@ import javax.jms.TextMessage;
 
 import org.apache.activemq.ActiveMQConnection;
 import org.apache.activemq.ActiveMQConnectionFactory;
+import org.apache.log4j.Logger;
 
-import activeMQclient.sdcomapi.Event;
-import activeMQclient.sdcomapi.Producer;
+import sdapi.com.Event;
+import sdapi.com.Producer;
+
 
 public class MQProducer implements Producer {
 
+	private static final Logger LOGGER = Logger.getLogger(MQProducer.class);
 	private Destination destination;
 	private long timeToLive;
 	private String user = ActiveMQConnection.DEFAULT_USER;
@@ -51,7 +53,6 @@ public class MQProducer implements Producer {
 				}
 				line = br.readLine();
 			}
-
 			br.close();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -66,7 +67,8 @@ public class MQProducer implements Producer {
 	public void setUp() {
 
 		try {
-			System.out.println("Trying to connected to " + url);
+			
+			LOGGER.info(String.format("Trying to connect to %s ...",this.url ));
 			// Create the connection.
 			ActiveMQConnectionFactory connectionFactory = new ActiveMQConnectionFactory(user, password, url);
 			connection = connectionFactory.createConnection();
@@ -83,10 +85,10 @@ public class MQProducer implements Producer {
 			if (timeToLive != 0) {
 				producer.setTimeToLive(timeToLive);
 			}
-			System.out.println("Successfully connected to " + url);
+			LOGGER.info(String.format("Successfully connected to %s.",this.url ));
 		} catch (Exception e) {
+			LOGGER.error("Cloud not start MQTT producer client!", e);
 			e.printStackTrace();
-
 		}
 	}
 
@@ -96,11 +98,11 @@ public class MQProducer implements Producer {
 			producer.send(message);
 		} catch (Exception ex) {
 			ex.printStackTrace();
-
 		}
 	}
 
 	public void close() {
+		LOGGER.info("Closing MQTT producer client!");
 		try {
 			if (this.connection != null)
 				this.connection.close();

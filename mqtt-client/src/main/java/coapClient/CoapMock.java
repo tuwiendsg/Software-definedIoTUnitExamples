@@ -1,7 +1,7 @@
-package coap;
+package coapClient;
 
-import activeMQclient.sdcomapi.Event;
-import activeMQclient.sdcomapi.Producer;
+import sdapi.com.Event;
+import sdapi.com.Producer;
 
 public class CoapMock implements Producer {
 
@@ -10,7 +10,7 @@ public class CoapMock implements Producer {
 	}
 
 	public void setUp() {
-		// Do nothing
+		System.out.println("Starting CoAP client!");
 	}
 
 	public void pollEvent() {
@@ -18,7 +18,8 @@ public class CoapMock implements Producer {
 	}
 
 	public void close() {
-		throw new UnsupportedOperationException();
+		//throw new UnsupportedOperationException();
+		System.out.println("Stopping CoAP client!");
 	}
 
 }

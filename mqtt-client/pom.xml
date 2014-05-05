@@ -18,6 +18,11 @@
 			<artifactId>activemq-core</artifactId>
 			<version>5.7.0</version>
 		</dependency>
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>1.2.17</version>
+		</dependency>
 	</dependencies>
 	<build>
 		<plugins>
@@ -48,7 +53,7 @@
 					<archive>
 						<manifest>
 							<addClasspath>true</addClasspath>
-							<mainClass>activeMQclient.MQCMDclient</mainClass>
+							<mainClass>mqttclient.MQCMDclient</mainClass>
 							<classpathPrefix>extra-resources//</classpathPrefix>
 						</manifest>
 						<manifestEntries>

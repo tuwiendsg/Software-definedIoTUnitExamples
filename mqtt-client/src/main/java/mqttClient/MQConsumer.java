@@ -1,4 +1,4 @@
-package activeMQclient;
+package mqttClient;
 
 import javax.jms.Connection;
 import javax.jms.Destination;
@@ -12,13 +12,16 @@ import javax.jms.TextMessage;
 
 import org.apache.activemq.ActiveMQConnection;
 import org.apache.activemq.ActiveMQConnectionFactory;
+import org.apache.log4j.Logger;
 
-import activeMQclient.sdcomapi.Consumer;
-import activeMQclient.sdcomapi.Event;
+import sdapi.com.Consumer;
+import sdapi.com.Event;
+
 
 
 public class MQConsumer implements MessageListener, ExceptionListener, Consumer {
 
+	private static final Logger LOGGER = Logger.getLogger(MQConsumer.class);
 	private String subject;
 	private String user = ActiveMQConnection.DEFAULT_USER;
 	private String password = ActiveMQConnection.DEFAULT_PASSWORD;
@@ -36,6 +39,7 @@ public class MQConsumer implements MessageListener, ExceptionListener, Consumer 
 	}
 
 	public void setUp() {
+		LOGGER.info("Starting up MQTT consumer ...");
 		try {
 			ActiveMQConnectionFactory connectionFactory = new ActiveMQConnectionFactory(user, password, url);
 			this.connection = connectionFactory.createConnection();
@@ -45,8 +49,10 @@ public class MQConsumer implements MessageListener, ExceptionListener, Consumer 
 			destination = session.createTopic(subject);
 			consumer = session.createConsumer(destination);
 			consumer.setMessageListener(this);
+			LOGGER.info("MQTT producer started successfully!");
 		} catch (Exception e) {
 			e.printStackTrace();
+			LOGGER.error("Cloud not start MQTT consumer!", e);
 		}
 	}
 
@@ -60,9 +66,7 @@ public class MQConsumer implements MessageListener, ExceptionListener, Consumer 
 	}
 
 	public void onEvent(Event event) {
-
-		System.out.println("MQClient received >>" + event.getEventContent());
-
+		LOGGER.info(String.format("Received event: %s", event.getEventContent()));
 	}
 
 	public void onException(JMSException e) {
@@ -78,11 +82,6 @@ public class MQConsumer implements MessageListener, ExceptionListener, Consumer 
 			e.printStackTrace();
 		}
 
-	}
-
-	public void onEvent() {
-		// TODO Auto-generated method stub
-		
 	}
 
 }
