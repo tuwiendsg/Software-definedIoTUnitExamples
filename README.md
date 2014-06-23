@@ -14,6 +14,6 @@ This work is sponsored by Pacific Controls Cloud Computing Lab [PC3L] (http://pc
 
 For any research work in which this framework is used, please cite the following article:
 
-- Stefan Nastic, Sanjin Sehic, Le-Duc Hung, Hong-Linh Truong, and Schahram Dustdar (2014). Provisioning Software-defined IoT Cloud Systems. The 2nd International Conference on Future Internet of Things and Cloud (FiCloud-2014), August27-29, 2014, Barcelona, Spain.
+- Stefan Nastic, Sanjin Sehic, Le-Duc Hung, Hong-Linh Truong, and Schahram Dustdar (2014). [Provisioning Software-defined IoT Cloud Systems] (http://www.infosys.tuwien.ac.at/research/viecom/SDIoTCloud/FiCloud14.pdf). The 2nd International Conference on Future Internet of Things and Cloud (FiCloud-2014), August27-29, 2014, Barcelona, Spain.
 
 
