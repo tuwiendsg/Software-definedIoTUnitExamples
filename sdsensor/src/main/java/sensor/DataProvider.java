@@ -30,7 +30,6 @@ public class DataProvider {
 		//SENSORID, DATA_INSTANCE_NAME1, DATA_INSTANCE_NAME2, ... DATA_INSTANCE_NAMEN
 		//1278, 123, 123, abc ... 567
 		
-		//TODO make this configurable
 		InputStreamReader reader = new InputStreamReader(DataProvider.class.getClassLoader().getResourceAsStream("data.csv"));
 		BufferedReader br = new BufferedReader(reader);
 
