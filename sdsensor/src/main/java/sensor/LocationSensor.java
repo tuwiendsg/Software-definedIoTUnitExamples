@@ -11,7 +11,9 @@ import sdapi.com.RefreshableProducerDelegate;
 import sdapi.container.Bootstrapable;
 
 /**
- * Software-defined temperature sensor
+ * @author Stefan Nastic (snastic@dsg.tuwien.ac.at)
+ * 
+ * Software-defined sensor
  * */
 
 public class LocationSensor implements Runnable, Bootstrapable {
@@ -35,7 +37,7 @@ public class LocationSensor implements Runnable, Bootstrapable {
 	}
 
 	public void run() {
-		DataInstance temp = DataProvider.getProvider().getNextInstance();
+		GenericDataInstance temp = DataProvider.getProvider().getNextInstance();
 		LOGGER.info(String.format("Reading update number %s - %s ", this.updates, temp.getJSON()));
 		this.producerDelegate.push(new Event(temp.getJSON()));
 		updates++;
