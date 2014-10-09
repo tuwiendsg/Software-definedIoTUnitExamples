@@ -52,6 +52,7 @@ public class LocationSensor implements Runnable, Bootstrapable {
 		LOGGER.info("Stoppinng Location Sensor ...");
 		if (scheduler != null) {
 			scheduler.shutdown();
+			this.producerDelegate.close();
 		}
 
 	}
