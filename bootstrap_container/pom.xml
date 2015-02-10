@@ -42,7 +42,7 @@
 					<archive>
 						<manifest>
 							<addClasspath>true</addClasspath>
-							<mainClass>container.Main</mainClass>
+							<mainClass>at.ac.tuwien.infosys.bootstrapcontainer.Main</mainClass>
 
 						</manifest>
 						<manifestEntries>

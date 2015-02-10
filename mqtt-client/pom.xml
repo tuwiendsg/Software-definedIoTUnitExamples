@@ -2,10 +2,10 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>at.ac.tuwien.dsg</groupId>
-	<artifactId>mqtt-client</artifactId>
+	<artifactId>cloud-connectivity</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
-	<name>mqtt-client</name>
+
 	<url>http://maven.apache.org</url>
 
 	<properties>
@@ -22,6 +22,11 @@
 			<groupId>log4j</groupId>
 			<artifactId>log4j</artifactId>
 			<version>1.2.17</version>
+		</dependency>
+		<dependency>
+			<groupId>org.eclipse.californium</groupId>
+			<artifactId>cf-helloworld-server</artifactId>
+			<version>1.0.0-SNAPSHOT</version>
 		</dependency>
 	</dependencies>
 	<build>
@@ -53,7 +58,7 @@
 					<archive>
 						<manifest>
 							<addClasspath>true</addClasspath>
-							<mainClass>mqttclient.MQCMDclient</mainClass>
+							<mainClass>at.ac.tuwien.infosys.cloudconnectivity.mqtt.MQCMDclient</mainClass>
 							<classpathPrefix>extra-resources//</classpathPrefix>
 						</manifest>
 						<manifestEntries>
